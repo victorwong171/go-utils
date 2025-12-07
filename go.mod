@@ -1,4 +1,4 @@
-module github.com/FatWang1/fatwang-go-utils
+module github.com/victorwong171/fatwang-go-utils
 
 go 1.23.0
 

@@ -1,15 +1,28 @@
 package pubsub
 
 var (
+	// DefaultExpire is the default message expiration time in seconds
 	DefaultExpire = 300
 )
 
+// Message represents a message in the pub/sub system.
+// It contains metadata about the event and the actual data payload.
 type Message struct {
-	Event     string
-	Data      any
-	Source    string
+	// Event is the type or name of the event
+	Event string
+
+	// Data contains the actual message payload
+	Data any
+
+	// Source identifies where the message originated from
+	Source string
+
+	// TimeStamp is the RFC3339 formatted timestamp when the message was created
 	TimeStamp string
-	Expire    int
+
+	// Expire is the message expiration time in seconds
+	// Messages that cannot be delivered within this time will be discarded
+	Expire int
 }
 
 //

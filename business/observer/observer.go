@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/FatWang1/fatwang-go-utils/utils"
+	"github.com/victorwong171/fatwang-go-utils/utils"
 )
 
 type Action[P any] func(ctx context.Context, params P) error

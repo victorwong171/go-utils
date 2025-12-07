@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/FatWang1/fatwang-go-utils/utils"
 	"github.com/go-test/deep"
+	"github.com/victorwong171/fatwang-go-utils/utils"
 )
 
 func TestNewEvent(t *testing.T) {

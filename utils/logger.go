@@ -1,6 +1,9 @@
 package utils
 
 import (
+	"os"
+	"testing"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -30,6 +33,16 @@ type Logger interface {
 
 	Flush() error
 }
+
+// isTesting 检查当前是否在测试环境中
+var isTesting = func() bool {
+	for _, arg := range os.Args {
+		if arg == "-test.run" || arg == "-test.v" || arg == "-test.cover" {
+			return true
+		}
+	}
+	return testing.Testing()
+}()
 
 // 定义函数类型以便于测试时进行mock
 type (
@@ -83,7 +96,12 @@ func (s *logger) Errorf(format string, args ...interface{}) {
 }
 
 func (s *logger) Fatalf(format string, args ...interface{}) {
-	s.l.Fatalf(format, args...)
+	if isTesting {
+		// 在测试环境中，使用Errorf代替Fatalf，避免调用os.Exit
+		s.l.Errorf(format, args...)
+	} else {
+		s.l.Fatalf(format, args...)
+	}
 }
 
 func (s *logger) Panicf(format string, args ...interface{}) {
@@ -107,7 +125,12 @@ func (s *logger) Error(args ...interface{}) {
 }
 
 func (s *logger) Fatal(args ...interface{}) {
-	s.l.Fatal(args...)
+	if isTesting {
+		// 在测试环境中，使用Error代替Fatal，避免调用os.Exit
+		s.l.Error(args...)
+	} else {
+		s.l.Fatal(args...)
+	}
 }
 
 func (s *logger) Panic(args ...interface{}) {

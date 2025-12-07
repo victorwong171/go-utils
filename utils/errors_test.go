@@ -158,3 +158,45 @@ func TestErrorCollector_AddNil(t *testing.T) {
 		t.Errorf("ErrorCollector should not have errors after adding nil")
 	}
 }
+
+func TestWrapError_WithCustomError(t *testing.T) {
+	// 测试 WrapError 函数处理 *Error 类型错误的情况
+	customErr := NewError("ORIGINAL_ERROR", "Original message").WithDetails("Original details")
+	wrappedErr := WrapError(customErr, "WRAP_ERROR", "Wrapped message")
+
+	if wrappedErr.Code != "WRAP_ERROR" {
+		t.Errorf("WrapError() code = %v, want WRAP_ERROR", wrappedErr.Code)
+	}
+
+	if wrappedErr.Details != "Original details" {
+		t.Errorf("WrapError() should use custom error's details, got %v", wrappedErr.Details)
+	}
+
+	// 测试没有 Details 的情况
+	customErrWithoutDetails := NewError("ORIGINAL_ERROR", "Original message without details")
+	wrappedErrWithoutDetails := WrapError(customErrWithoutDetails, "WRAP_ERROR", "Wrapped message")
+
+	if wrappedErrWithoutDetails.Details != "Original message without details" {
+		t.Errorf("WrapError() should use custom error's message when no details, got %v", wrappedErrWithoutDetails.Details)
+	}
+}
+
+func TestErrorCollector_Error_Empty(t *testing.T) {
+	// 测试空的 ErrorCollector.Error() 方法返回空字符串
+	ec := NewErrorCollector()
+	errorMsg := ec.Error()
+
+	if errorMsg != "" {
+		t.Errorf("Empty ErrorCollector.Error() should return empty string, got %v", errorMsg)
+	}
+}
+
+func TestErrorCollector_ToError_Empty(t *testing.T) {
+	// 测试空的 ErrorCollector.ToError() 方法返回 nil
+	ec := NewErrorCollector()
+	err := ec.ToError()
+
+	if err != nil {
+		t.Errorf("Empty ErrorCollector.ToError() should return nil, got %v", err)
+	}
+}

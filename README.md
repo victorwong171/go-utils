@@ -1,11 +1,11 @@
-# fatwang-go-utils
+# go-utils
 
-[![GoDoc](https://pkg.go.dev/badge/github.com/victorwong171/fatwang-go-utils?utm_source=godoc)](https://pkg.go.dev/github.com/victorwong171/fatwang-go-utils)
-[![Go Report Card](https://goreportcard.com/badge/github.com/victorwong171/fatwang-go-utils)](https://goreportcard.com/report/github.com/victorwong171/fatwang-go-utils)
-[![codecov](https://codecov.io/github/victorwong171/fatwang-go-utils/branch/master/graph/badge.svg?token=2XWEF1Z3ZI)](https://codecov.io/github/victorwong171/fatwang-go-utils)
-![GitHub License](https://img.shields.io/github/license/victorwong171/fatwang-go-utils)
+[![GoDoc](https://pkg.go.dev/badge/github.com/victorwong171/go-utils?utm_source=godoc)](https://pkg.go.dev/github.com/victorwong171/go-utils)
+[![Go Report Card](https://goreportcard.com/badge/github.com/victorwong171/go-utils)](https://goreportcard.com/report/github.com/victorwong171/go-utils)
+[![codecov](https://codecov.io/github/victorwong171/go-utils/branch/master/graph/badge.svg?token=2XWEF1Z3ZI)](https://codecov.io/github/victorwong171/go-utils)
+![GitHub License](https://img.shields.io/github/license/victorwong171/go-utils)
 [![Go Version](https://img.shields.io/badge/Go-1.24+-blue.svg)](https://golang.org)
-[![Build Status](https://github.com/victorwong171/fatwang-go-utils/workflows/CI/badge.svg)](https://github.com/victorwong171/fatwang-go-utils/actions)
+[![Build Status](https://github.com/victorwong171/go-utils/workflows/CI/badge.svg)](https://github.com/victorwong171/go-utils/actions)
 
 A comprehensive Go utilities library providing high-performance data structures, business components, and common utilities for modern Go applications.
 
@@ -20,13 +20,13 @@ A comprehensive Go utilities library providing high-performance data structures,
 ## 📦 Installation
 
 ```bash
-go get github.com/victorwong171/fatwang-go-utils
+go get github.com/victorwong171/go-utils
 ```
 
 ## 🏗️ Architecture
 
 ```
-fatwang-go-utils/
+go-utils/
 ├── business/          # Business logic components
 │   ├── observer/      # Event observer pattern
 │   └── publisher/      # Pub/Sub messaging
@@ -55,8 +55,8 @@ import (
     "fmt"
     "log"
 
-    "github.com/victorwong171/fatwang-go-utils/business/observer"
-    "github.com/victorwong171/fatwang-go-utils/utils"
+    "github.com/victorwong171/go-utils/business/observer"
+    "github.com/victorwong171/go-utils/utils"
 )
 
 func main() {
@@ -108,7 +108,7 @@ package main
 import (
     "fmt"
     "time"
-    "github.com/victorwong171/fatwang-go-utils/business/publisher"
+    "github.com/victorwong171/go-utils/business/publisher"
 )
 
 func main() {
@@ -163,9 +163,9 @@ package main
 
 import (
     "fmt"
-    "github.com/victorwong171/fatwang-go-utils/desc/bitmap"
-    "github.com/victorwong171/fatwang-go-utils/desc/set"
-    "github.com/victorwong171/fatwang-go-utils/desc/union_find"
+    "github.com/victorwong171/go-utils/desc/bitmap"
+    "github.com/victorwong171/go-utils/desc/set"
+    "github.com/victorwong171/go-utils/desc/union_find"
 )
 
 func main() {
@@ -196,7 +196,7 @@ package main
 
 import (
     "fmt"
-    "github.com/victorwong171/fatwang-go-utils/utils"
+    "github.com/victorwong171/go-utils/utils"
 )
 
 func main() {
@@ -278,8 +278,8 @@ go tool cover -html=coverage.out -o coverage.html
 
 ```bash
 # Clone repository
-git clone https://github.com/victorwong171/fatwang-go-utils.git
-cd fatwang-go-utils
+git clone https://github.com/victorwong171/go-utils.git
+cd go-utils
 
 # Install dependencies
 go mod download
@@ -308,8 +308,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 - 📧 Email: victorwang171@gmail.com
-- 🐛 Issues: [GitHub Issues](https://github.com/victorwong171/fatwang-go-utils/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/victorwong171/fatwang-go-utils/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/victorwong171/go-utils/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/victorwong171/go-utils/discussions)
 
 ---
 

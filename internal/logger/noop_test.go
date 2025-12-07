@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/victorwong171/fatwang-go-utils/utils"
+	"github.com/victorwong171/go-utils/utils"
 )
 
 func (n *noop) WithField(key string, value interface{}) utils.Logger {

@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/victorwong171/fatwang-go-utils)](https://goreportcard.com/report/github.com/victorwong171/fatwang-go-utils)
 [![codecov](https://codecov.io/github/victorwong171/fatwang-go-utils/branch/master/graph/badge.svg?token=2XWEF1Z3ZI)](https://codecov.io/github/victorwong171/fatwang-go-utils)
 ![GitHub License](https://img.shields.io/github/license/victorwong171/fatwang-go-utils)
-[![Go Version](https://img.shields.io/badge/Go-1.23+-blue.svg)](https://golang.org)
+[![Go Version](https://img.shields.io/badge/Go-1.24+-blue.svg)](https://golang.org)
 [![Build Status](https://github.com/victorwong171/fatwang-go-utils/workflows/CI/badge.svg)](https://github.com/victorwong171/fatwang-go-utils/actions)
 
 A comprehensive Go utilities library providing high-performance data structures, business components, and common utilities for modern Go applications.
@@ -15,7 +15,7 @@ A comprehensive Go utilities library providing high-performance data structures,
 - **Thread Safe**: All components are designed for concurrent use
 - **Well Tested**: 100% test coverage with comprehensive benchmarks
 - **Production Ready**: Used in production environments
-- **Go 1.23+**: Modern Go features and best practices
+- **Go 1.24+**: Modern Go features and best practices
 
 ## 📦 Installation
 

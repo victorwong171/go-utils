@@ -1,4 +1,4 @@
-package tire
+package trie
 
 import (
 	"gopkg.in/errgo.v2/errors"

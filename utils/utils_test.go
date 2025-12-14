@@ -118,7 +118,15 @@ func TestGenerateRandomIntList(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			t.Log(GenerateRandomIntList(tt.args.size, tt.args.edge1, tt.args.edge2))
+			got := GenerateRandomIntList(tt.args.size, tt.args.edge1, tt.args.edge2)
+			if len(got) != tt.args.size {
+				t.Errorf("GenerateRandomIntList() length = %v, want %v", len(got), tt.args.size)
+			}
+			for _, v := range got {
+				if v < tt.args.edge2 || v > tt.args.edge1 {
+					t.Errorf("GenerateRandomIntList() value = %v, want between %v and %v", v, tt.args.edge2, tt.args.edge1)
+				}
+			}
 		})
 	}
 }

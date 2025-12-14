@@ -41,5 +41,5 @@ func (b *bitMap) Check(num uint) bool {
 	if num > b.vmax {
 		return false
 	}
-	return b.graph[num>>3]&(1<<(num%8)) == 1
+	return b.graph[num>>3]&(1<<(num%8)) != 0
 }

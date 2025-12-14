@@ -1,4 +1,4 @@
-package tire
+package trie
 
 import (
 	"github.com/go-test/deep"

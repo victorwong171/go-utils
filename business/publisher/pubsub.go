@@ -106,13 +106,7 @@ func (p *Publisher) Evict(sub chan *Message) {
 	defer p.m.Unlock()
 	if _, exists := p.subscribers[sub]; exists {
 		delete(p.subscribers, sub)
-		// Use select to avoid closing an already closed channel
-		select {
-		case <-sub:
-			// channel is already closed
-		default:
-			close(sub)
-		}
+		close(sub)
 	}
 }
 
@@ -127,13 +121,7 @@ func (p *Publisher) Close() {
 	defer p.m.Unlock()
 	for sub := range p.subscribers {
 		delete(p.subscribers, sub)
-		// Use select to avoid closing an already closed channel
-		select {
-		case <-sub:
-			// channel is already closed
-		default:
-			close(sub)
-		}
+		close(sub)
 	}
 }
 

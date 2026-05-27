@@ -37,7 +37,11 @@ func GenerateRandomIntList(size int, edge1, edge2 int) []int {
 		edge1, edge2 = edge2, edge1
 	}
 	for i := 0; i < size; i++ {
-		list[i] = rand.Intn(edge2-edge1) + edge1
+		if edge1 == edge2 {
+			list[i] = edge1
+		} else {
+			list[i] = rand.Intn(edge2-edge1) + edge1
+		}
 	}
 	return list
 }
@@ -57,7 +61,6 @@ func CurrentLimit(limit int, workList []func() error, enableError bool) error {
 
 	eg := new(errgroup.Group)
 	limitCh := make(chan struct{}, limit)
-	defer close(limitCh)
 
 	for _, w := range workList {
 		work := w

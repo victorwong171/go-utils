@@ -96,6 +96,17 @@ func Test_bitMap_Check(t *testing.T) {
 			},
 			want: false,
 		},
+		{
+			name: "check bit that is set",
+			fields: fields{
+				vmax:  defaultMax,
+				graph: func() []byte { g := make([]byte, size, size); g[1] = 4; return g }(),
+			},
+			args: args{
+				num: 10,
+			},
+			want: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

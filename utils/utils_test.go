@@ -115,6 +115,14 @@ func TestGenerateRandomIntList(t *testing.T) {
 				edge2: 1,
 			},
 		},
+		{
+			name: "edge1 == edge2",
+			args: args{
+				size:  3,
+				edge1: 2,
+				edge2: 2,
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

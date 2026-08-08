@@ -3,7 +3,6 @@ package utils
 import (
 	"errors"
 	"testing"
-	"time"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -270,39 +269,38 @@ func TestPanicMethod(t *testing.T) {
 }
 
 func TestFatalfMethod(t *testing.T) {
-	// 测试Fatalf方法的覆盖
-	// 使用goroutine来调用Fatalf，这样即使它调用os.Exit，也只会终止该goroutine
-	
-	// 创建logger实例
-	logger := MustNewDevelopment()
-	
-	// 在单独的goroutine中调用Fatalf
-	go func() {
-		// 这会调用os.Exit，但只会终止当前goroutine
-		logger.Fatalf("Fatalf %s", "message")
-	}()
-	
-	// 睡眠一小段时间，确保goroutine有机会执行
-	time.Sleep(10 * time.Millisecond)
-	
-	// 测试通过，因为我们已经确保Fatalf方法的代码被执行
+	// 备份isTesting
+	originalIsTesting := isTesting
+	defer func() { isTesting = originalIsTesting }()
+
+	// 测试 isTesting = true
+	isTesting = true
+	core, recorded := observer.New(zapcore.ErrorLevel)
+	zapLogger := zap.New(core)
+	logger := Wrap(zapLogger)
+	logger.Fatalf("Fatalf %s", "message")
+	if len(recorded.All()) != 1 {
+		t.Error("Expected 1 log entry for Fatalf in testing mode")
+	}
+
+	// 测试 isTesting = false
+	// 由于这会调用os.Exit，我们不能在单元测试中直接运行它
+	// 但我们可以通过mock isTesting来测试if分支的另一边
+	// 实际上，我们无法在这里安全地测试 isTesting=false 的分支，因为它会杀死测试进程
 }
 
 func TestFatalMethod(t *testing.T) {
-	// 测试Fatal方法的覆盖
-	// 与TestFatalfMethod类似，在goroutine中调用
-	
-	// 创建logger实例
-	logger := MustNewDevelopment()
-	
-	// 在单独的goroutine中调用Fatal
-	go func() {
-		// 这会调用os.Exit，但只会终止当前goroutine
-		logger.Fatal("Fatal", "message")
-	}()
-	
-	// 睡眠一小段时间，确保goroutine有机会执行
-	time.Sleep(10 * time.Millisecond)
-	
-	// 测试通过，因为我们已经确保Fatal方法的代码被执行
+	// 备份isTesting
+	originalIsTesting := isTesting
+	defer func() { isTesting = originalIsTesting }()
+
+	// 测试 isTesting = true
+	isTesting = true
+	core, recorded := observer.New(zapcore.ErrorLevel)
+	zapLogger := zap.New(core)
+	logger := Wrap(zapLogger)
+	logger.Fatal("Fatal", "message")
+	if len(recorded.All()) != 1 {
+		t.Error("Expected 1 log entry for Fatal in testing mode")
+	}
 }

@@ -379,7 +379,7 @@ func TestPublisher_MessageWithZeroExpire(t *testing.T) {
 	// 零过期时间应该立即超时，所以不应该收到消息
 	select {
 	case <-ch:
-		t.Log("Message with zero expire should timeout immediately")
+		t.Error("Message with zero expire should timeout immediately")
 	case <-time.After(100 * time.Millisecond):
 		// 这是期望的行为，消息因为零过期时间而超时
 	}
@@ -396,7 +396,7 @@ func TestPublisher_MessageWithNegativeExpire(t *testing.T) {
 	// 负过期时间应该立即超时，所以不应该收到消息
 	select {
 	case <-ch:
-		t.Log("Message with negative expire should timeout immediately")
+		t.Error("Message with negative expire should timeout immediately")
 	case <-time.After(100 * time.Millisecond):
 		// 这是期望的行为，消息因为负过期时间而超时
 	}
